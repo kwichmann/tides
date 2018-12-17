@@ -1,10 +1,26 @@
-let earthDiameter = 200;
-let moonDiameter = 100;
+// Size of window
+const viewSize = 600;
+
+// Earth
+const earthDiameter = viewSize / 2.5;
+const earthX = -viewSize * 1 / 6;
+const earthY = 0;
+
+// Moon
+const moonDiameter = viewSize / 6;
+const moonX = viewSize * 3 / 8;
+const moonY = 0;
+
+// Center of mass
+const centerOfMassX = viewSize / 2;
+const centerOfMassY = viewSize / 2;
+
 let trinListe = [];
 let trinNummer = 0;
+let vinkel = 0;
 
 function setup() {
-    const canvas = createCanvas(800, 400);
+    const canvas = createCanvas(viewSize, viewSize);
     select("#kanvas").child(canvas);
 
     const tilbage = createButton("Tilbage");
@@ -26,7 +42,8 @@ function setup() {
     });
 
     trinListe = [{
-        tekst: "Jorden og Månen roterer om et fælles tyngdepunkt, i frit fald mod hinanden."
+        tekst: "Jorden og Månen roterer om et fælles tyngdepunkt - prikken i midten af billedet - i frit fald mod hinanden.",
+        centerOfMass: true
     },
     {
         tekst: "Det betyder at Jorden accelererer mod Månen, svarende til et frit fald. Dette skyldes Månens tyngdekraft.",
@@ -76,13 +93,18 @@ function draw() {
     background(0);
     noStroke();
 
+    // Rotate view
+    push();
+    translate(centerOfMassX, centerOfMassY);
+    rotate(vinkel);
+
     // Earth
     fill(50, 50, 255);
-    ellipse(height / 2, height / 2, earthDiameter);
+    ellipse(earthX, earthY, earthDiameter);
 
     // Moon
     fill(150);
-    ellipse(width - height / 2, height / 2, moonDiameter);
+    ellipse(moonX, moonY, moonDiameter);
 
     const trin = trinListe[trinNummer];
 
@@ -133,4 +155,13 @@ function draw() {
     if (trin.globalGravity) {
         earthGravity().tegn();
     }
+
+    if (trin.centerOfMass) {
+        strokeWeight(8);
+        stroke(255);
+        point(0, 0);
+    }
+
+    pop();
+    vinkel += 0.005;
 }
