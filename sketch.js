@@ -77,7 +77,7 @@ function setup() {
         surfaceCentrifugal: true
     },
     {
-        tekst: "Så når man tager begge krafter i betragtning får man en sum forskellig fra nul.",
+        tekst: "Så når man tager begge kræfter i betragtning får man en sum forskellig fra nul.",
         surfaceGravity: true,
         surfaceCentrifugal: true,
         sum: true
