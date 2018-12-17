@@ -72,7 +72,7 @@ function setup() {
         surfaceGravity: true
     },
     {
-        tekst: "Tynge- og centripetalkræfterne ophæver altså ikke hinanden helt perfekt.",
+        tekst: "Tynge- og centrifugalkræfterne ophæver altså ikke hinanden helt perfekt.",
         surfaceGravity: true,
         surfaceCentrifugal: true
     },
